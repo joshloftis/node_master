@@ -19,7 +19,7 @@ const httpServer = http.createServer(function(req, res){
 });
 
 // Start the server
-httpServer.listen(config.httpPort, function(){ 
+httpServer.listen(config.httpPort, function(){
   console.log('The server is listening on port ' + config.httpPort);
 });
 
@@ -34,7 +34,7 @@ const httpsServer = https.createServer(httpsServerOptions, function(req, res){
 });
 
 // Start the HTTPS server
-httpsServer.listen(config.httpsPort, function(){ 
+httpsServer.listen(config.httpsPort, function(){
   console.log('The server is listening on port ' + config.httpsPort);
 });
 
@@ -96,7 +96,7 @@ const unifiedServer = function(req, res) {
       res.end(payLoadString);
 
           // Log the request (i.e. path)
-    console.log('Returning this response: ', statusCode, payLoadString); 
+    console.log('Returning this response: ', statusCode, payLoadString);
     });
   });
 };
@@ -105,5 +105,6 @@ const unifiedServer = function(req, res) {
 const router = {
   'ping': handlers.ping,
   'users': handlers.users,
-  'tokens': handlers.tokens
+  'tokens': handlers.tokens,
+  'checks': handlers.checks
 };
