@@ -5,6 +5,9 @@ log
 .logs
 app.log.*
 npm-debug.log*
+.*
+!/.gitignore
+
 
 # Runtime data
 pids
