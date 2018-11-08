@@ -364,6 +364,12 @@ handlers.public = function(data, callback) {
 *
 */
 
+// Example error
+handlers.exampleError = function(data, callback) {
+  const err = new Error('This is an example error');
+  throw(err);
+};
+
 handlers.users = function(data, callback) {
   const acceptaleMethpds = ['post', 'get', 'put', 'delete'];
   if (acceptaleMethpds.indexOf(data.method) > -1) {
