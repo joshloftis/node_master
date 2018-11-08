@@ -11,6 +11,139 @@ const config = require('./config');
 // Define the handlers
 const handlers = {};
 
+/*
+* HTML handlers
+*
+*/
+
+// Index handler
+handlers.index = function(data, callback) {
+  // Reject any request that isn't a GET
+  if (data.method == 'get') {
+
+    // Prepare data for the interpolation
+    const templateData = {
+      'head.title': 'Uptime Monitoring - Made Simple',
+      'head.description': 'We offer free, simple uptime monitoring for HTTP and HTTPS sites of all kinds. When your site goes down, we\'ll send you a text to let you know.',
+      'body.title': 'Hello Templated World',
+      'body.class': 'index'
+    };
+
+    // Read in a template as a string
+    helpers.getTemplate('index', templateData, function(err, str) {
+      if (!err && str) {
+        // Add the universal header and footer
+        helpers.addUniversalTemplates(str, templateData, function(err, str) {
+          if (!err && str) {
+            callback(200, str, 'html')
+          } else {
+            callback(500, undefined, 'html');
+          }
+        });
+      } else {
+        callback(500, undefined, 'html');
+      }
+    })
+  } else {
+    callback(405, undefined, 'html');
+  }
+};
+
+// Create account
+handlers.accountCreate = function(data, callback) {
+  // Reject any request that isn't a GET
+  if (data.method == 'get') {
+
+    // Prepare data for the interpolation
+    const templateData = {
+      'head.title': 'Create an account',
+      'head.description': 'Signup is easy and only takes a few seconds',
+      'body.class': 'index'
+    };
+
+    // Read in a template as a string
+    helpers.getTemplate('accountCreate', templateData, function(err, str) {
+      if (!err && str) {
+        // Add the universal header and footer
+        helpers.addUniversalTemplates(str, templateData, function(err, str) {
+          if (!err && str) {
+            callback(200, str, 'html')
+          } else {
+            callback(500, undefined, 'html');
+          }
+        });
+      } else {
+        callback(500, undefined, 'html');
+      }
+    })
+  } else {
+    callback(405, undefined, 'html');
+  }
+};
+
+// Favicon
+handlers.favicon = function(data, callback) {
+    // Reject any request that isn't a GET
+    if (data.method == 'get') {
+      // Read in the favicons data
+      helpers.getStaticAsset('favicon.ico', function(err, data) {
+        if (!err && data) {
+          // Callback
+          callback(200, data, 'favicon');
+        } else {
+          callback(500);
+        }
+      });
+    } else {
+      callback(405);
+    }
+};
+
+// Public assets
+handlers.public = function(data, callback) {
+  // Reject any request that isn't a GET
+  if (data.method == 'get') {
+    // Get the filename being requested
+    const trimmedAssetName = data.trimmedPath.replace('public/', '').trim();
+    if (trimmedAssetName.length > 0) {
+      // Read in the asset's data
+      helpers.getStaticAsset(trimmedAssetName, function(err, data) {
+        if (!err && data) {
+          // Determine the content type (Default to plain text);
+          let contentType = 'plain';
+
+          if (trimmedAssetName.indexOf('.css') > -1) {
+            contentType = 'css'
+          }
+          if (trimmedAssetName.indexOf('.png') > -1) {
+            contentType = 'png'
+          }
+          if (trimmedAssetName.indexOf('.jpg') > -1) {
+            contentType = 'jpg'
+          }
+          if (trimmedAssetName.indexOf('.ico') > -1) {
+            contentType = 'favicon'
+          }
+
+          // Callback the data
+          callback(200, data, contentType);
+        } else {
+          callback(404)
+        }
+      });
+    } else {
+      callback(404);
+    }
+  } else {
+    callback(405);
+  }
+};
+
+/*
+* JSON API Handlers
+*
+*/
+
 handlers.users = function(data, callback) {
   const acceptaleMethpds = ['post', 'get', 'put', 'delete'];
   if (acceptaleMethpds.indexOf(data.method) > -1) {
