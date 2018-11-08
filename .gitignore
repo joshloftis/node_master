@@ -2,6 +2,7 @@
 logs
 log
 *.log
+.logs
 app.log.*
 npm-debug.log*
 
