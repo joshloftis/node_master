@@ -4,7 +4,7 @@
 *
 */
 
-// Dependecies
+// Dependencies
 const vm = require('vm');
 
 // Define a context for the script to run in

@@ -4,7 +4,7 @@
 *
 */
 
-// Dependecies
+// Dependencies
 const http2 = require('http2');
 
 // Init the server

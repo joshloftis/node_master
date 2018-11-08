@@ -3,7 +3,7 @@
 *
 */
 
-// Dependecies
+// Dependencies
 const readLine = require('readline');
 const util = require('util');
 const debug = util.debug('cli');

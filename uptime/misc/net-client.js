@@ -4,7 +4,7 @@
 *
 */
 
-// Dependecies
+// Dependencies
 const net = require('net');
 
 // Define the message to send

@@ -3,7 +3,7 @@
 *
 */
 
-// Dependecies
+// Dependencies
 const path = require('path');
 const fs = require('fs');
 const _data = require('./data');

@@ -4,7 +4,7 @@
 *
 */
 
-// Dependecies
+// Dependencies
 const tls = require('tls');
 const fs = require('fs');
 const path = require('path');

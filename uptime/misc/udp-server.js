@@ -4,7 +4,7 @@
 *
 */
 
-// Dependecies
+// Dependencies
 const dgram = require('dgram');
 
 // Create a server
